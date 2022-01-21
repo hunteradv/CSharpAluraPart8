@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ByteBank.Modelos;
 using ByteBank.Modelos.Funcionarios;
+using ByteBank.SistemaAgencia.Comparators;
 using ByteBank.SistemaAgencia.Extensions;
 
 namespace ByteBank.SistemaAgencia
@@ -14,35 +15,67 @@ namespace ByteBank.SistemaAgencia
 
         static void Main(string[] args)
         {
-            List<int> IntList = new List<int>();
-
-            //ListaInteiros.Add(1);
-            //ListaInteiros.Add(2);
-            //ListaInteiros.Add(3);
-
-            //ListaInteiros.Remove(1);
-
-            //ExtensionList.AddSeveral(IntList, 1, 2, 3);
-
-            IntList.AddSeveral(1, 2, 3);
-
-            Console.WriteLine("Lista de inteiros");
-
-            foreach (int integer in IntList)
+            var accounts = new List<ContaCorrente>()
             {
-                Console.WriteLine($"inteiro: {integer}");
+                new ContaCorrente(341, 355943),
+                new ContaCorrente(341, 302932),
+                new ContaCorrente(351, 302933),
+                new ContaCorrente(351, 1)
+            };
+
+            //ordenação com IComparable
+            //accounts.Sort();
+
+            //ordenação com Imcomparer
+            accounts.Sort(new CurrentAccountComparatorByAgency());
+
+            foreach (var account in accounts)
+            {
+                Console.WriteLine($"conta: {account.Numero}, agencia: {account.Agencia}");
+            }
+
+            Console.ReadLine();
+        }
+    
+
+        static void SortTest()
+        {
+            var ages = new List<int>()
+            {
+                20,
+                20,
+                29,
+                21,
+                24,
+            };
+
+            ages.Sort();
+
+            Console.WriteLine("Lista de idades");
+
+            foreach (int age in ages)
+            {
+                Console.WriteLine($"idade: {age}");
             }
 
             Console.WriteLine();
 
-            List<string> StringList = new List<string>();
-            StringList.AddSeveral("Gustavo", "Rafael");
-
-            Console.WriteLine("Lista de strings");
-
-            foreach (string strin in StringList)
+            var names = new List<string>()
             {
-                Console.WriteLine($"string: {strin}");
+                "Gustavo",
+                "Michel",
+                "Bruna",
+                "Nathan",
+                "Murilo"
+            };
+
+            names.Sort();
+
+            Console.WriteLine("Lista de nomes");
+
+            foreach (string name in names)
+            {
+                Console.WriteLine($"nome: {name}");
             }
 
             Console.ReadLine();
