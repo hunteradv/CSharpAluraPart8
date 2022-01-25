@@ -19,6 +19,29 @@ namespace ByteBank.SistemaAgencia
             {
                 new ContaCorrente(341, 355943),
                 new ContaCorrente(341, 302932),
+                null,
+                new ContaCorrente(351, 302933),
+                new ContaCorrente(351, 12),
+                null,
+                null
+            };
+
+            var sortedAccountsNotNull = accounts.Where(account => account != null).OrderBy(account => account.Numero);
+
+            foreach (var account in sortedAccountsNotNull)
+            {
+                Console.WriteLine($"conta: {account.Numero}, agencia: {account.Agencia}");
+            }
+
+            Console.ReadLine();
+        }
+
+        static void IComparableTest()
+        {
+            var accounts = new List<ContaCorrente>()
+            {
+                new ContaCorrente(341, 355943),
+                new ContaCorrente(341, 302932),
                 new ContaCorrente(351, 302933),
                 new ContaCorrente(351, 1)
             };
@@ -29,12 +52,7 @@ namespace ByteBank.SistemaAgencia
             //ordenação com Imcomparer
             accounts.Sort(new CurrentAccountComparatorByAgency());
 
-            foreach (var account in accounts)
-            {
-                Console.WriteLine($"conta: {account.Numero}, agencia: {account.Agencia}");
-            }
-
-            Console.ReadLine();
+            
         }
     
 
