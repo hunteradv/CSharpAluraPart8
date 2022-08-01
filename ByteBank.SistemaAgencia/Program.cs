@@ -15,7 +15,24 @@ namespace ByteBank.SistemaAgencia
 
         static void Main(string[] args)
         {
-            SortTest();
+            var ages = new List<int>
+            {
+                1,
+                10,
+                25,
+                21,
+                4,
+                499
+            };
+
+            ages.AddSeveral(2, 3, 5);
+
+            foreach (var age in ages)
+            {
+                Console.WriteLine(age);
+            }
+
+            Console.ReadLine();
         }
 
         private static void TestCheckingAccountListNull()
