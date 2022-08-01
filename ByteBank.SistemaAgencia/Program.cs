@@ -72,6 +72,8 @@ namespace ByteBank.SistemaAgencia
                 24,
             };
 
+            //ages.Remove(20);
+
             ages.Sort();
 
             Console.WriteLine("Lista de idades");
@@ -118,7 +120,7 @@ namespace ByteBank.SistemaAgencia
         static void TestaListaDeContaCorrente()
         {
             //ListaDeContaCorrente lista = new ListaDeContaCorrente();
-            ListaDeContaCorrente lista = new ListaDeContaCorrente();
+            CheckingAccountList list = new CheckingAccountList();
 
             CheckingAccount contaDoGui = new CheckingAccount(11111, 1111111);
 
@@ -129,9 +131,9 @@ namespace ByteBank.SistemaAgencia
                 new CheckingAccount(874, 5679754)
             };
 
-            lista.AdicionarVarios(contas);
+            list.AddSeveral(contas);
 
-            lista.AdicionarVarios(
+            list.AddSeveral(
                 contaDoGui,
                 new CheckingAccount(874, 5679787),
                 new CheckingAccount(874, 5679787),
@@ -143,9 +145,9 @@ namespace ByteBank.SistemaAgencia
                 new CheckingAccount(874, 5679787)
             );
 
-            for (int i = 0; i < lista.Tamanho; i++)
+            for (int i = 0; i < list.Size; i++)
             {
-                CheckingAccount itemAtual = lista[i];
+                CheckingAccount itemAtual = list[i];
                 Console.WriteLine($"Item na posição {i} = Conta {itemAtual.Number}/{itemAtual.Agencia}");
             }
         }

@@ -12,55 +12,55 @@ namespace ByteBank.SistemaAgencia
     //                                 `- _proximaPosicao
 
 
-    public class ListaDeContaCorrente
+    public class CheckingAccountList
     {
-        private CheckingAccount[] _itens;
-        private int _proximaPosicao;
+        private CheckingAccount[] _items;
+        private int _nextposition;
         
-        public int Tamanho
+        public int Size
         {
             get
             {
-                return _proximaPosicao;
+                return _nextposition;
             }
         }
 
-        public ListaDeContaCorrente(int capacidadeInicial = 5)
+        public CheckingAccountList(int startingCapacity = 5)
         {
-            _itens = new CheckingAccount[capacidadeInicial];
-            _proximaPosicao = 0;
+            _items = new CheckingAccount[startingCapacity];
+            _nextposition = 0;
         }
 
-        public void MeuMetodo(string texto = "texti padrao", int numero = 5)
+        public void MyMethod(string text = "texto padrao", int number = 5)
         {
 
         }
 
-        public void Adicionar(CheckingAccount item)
+        public void Insert(CheckingAccount item)
         {
-            VerificarCapacidade(_proximaPosicao + 1);
+            VerificarCapacidade(_nextposition + 1);
 
             // Console.WriteLine($"Adicionando item na posição {_proximaPosicao}");
 
-            _itens[_proximaPosicao] = item;
-            _proximaPosicao++;
+            _items[_nextposition] = item;
+            _nextposition++;
         }
         
-        public void AdicionarVarios(params CheckingAccount[] itens)
+        public void AddSeveral(params CheckingAccount[] items)
         {
-            foreach(CheckingAccount conta in itens)
+            foreach(CheckingAccount account in items)
             {
-                Adicionar(conta);
+                Insert(account);
             }
         }
 
-        public void Remover(CheckingAccount item)
+        public void Delete(CheckingAccount item)
         {
             int indiceItem = -1;
 
-            for(int i = 0; i < _proximaPosicao; i++)
+            for(int i = 0; i < _nextposition; i++)
             {
-                CheckingAccount itemAtual = _itens[i];
+                CheckingAccount itemAtual = _items[i];
 
                 if (itemAtual.Equals(item))
                 {
@@ -75,33 +75,33 @@ namespace ByteBank.SistemaAgencia
             //                       ^
             //                        ` _proximaPosicao
 
-            for (int i = indiceItem; i < _proximaPosicao-1; i++)
+            for (int i = indiceItem; i < _nextposition-1; i++)
             {
-                _itens[i] = _itens[i + 1];
+                _items[i] = _items[i + 1];
             }
 
-            _proximaPosicao--;
-            _itens[_proximaPosicao] = null;
+            _nextposition--;
+            _items[_nextposition] = null;
         }
 
         public CheckingAccount GetItemNoIndice(int indice)
         {
-            if(indice < 0 || indice >= _proximaPosicao)
+            if(indice < 0 || indice >= _nextposition)
             {
                 throw new ArgumentOutOfRangeException(nameof(indice));
             }
 
-            return _itens[indice];
+            return _items[indice];
         }
 
         private void VerificarCapacidade(int tamanhoNecessario)
         {
-            if(_itens.Length >= tamanhoNecessario)
+            if(_items.Length >= tamanhoNecessario)
             {
                 return;
             }
 
-            int novoTamanho = _itens.Length * 2;
+            int novoTamanho = _items.Length * 2;
             if (novoTamanho < tamanhoNecessario)
             {
                 novoTamanho = tamanhoNecessario;
@@ -111,13 +111,13 @@ namespace ByteBank.SistemaAgencia
 
             CheckingAccount[] novoArray = new CheckingAccount[novoTamanho];
 
-            for(int indice = 0; indice < _itens.Length; indice++)
+            for(int indice = 0; indice < _items.Length; indice++)
             {
-                novoArray[indice] = _itens[indice];
+                novoArray[indice] = _items[indice];
                 // Console.WriteLine(".");
             }
 
-            _itens = novoArray;
+            _items = novoArray;
         }
         
         public CheckingAccount this[int indice]
