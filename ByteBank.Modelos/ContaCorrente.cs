@@ -9,9 +9,9 @@ namespace ByteBank.Modelos
     /// <summary>
     /// Define uma Conta Corrente do banco ByteBank.
     /// </summary>
-    public class CheckingAccount : IComparable
+    public class ContaCorrente : IComparable
     {
-        private static int TaxaOperacao;
+        private static int TaxaOperacao;    
 
         public static int TotalDeContasCriadas { get; private set; }
 
@@ -20,7 +20,7 @@ namespace ByteBank.Modelos
         public int ContadorSaquesNaoPermitidos { get; private set; }
         public int ContadorTransferenciasNaoPermitidas { get; private set; }
 
-        public int Number { get; }
+        public int Numero { get; }
         public int Agencia { get; }
 
         private double _saldo = 100;
@@ -45,8 +45,8 @@ namespace ByteBank.Modelos
         /// Cria uma instância de ContaCorrente com os argumentos utilizados.
         /// </summary>
         /// <param name="agencia"> Representa o valor da propriedade <see cref="Agencia"/> e deve possuir um valor maior que zero. </param>
-        /// <param name="numero"> Representa o valor da propriedade <see cref="Number"/> e deve possuir um valor maior que zero. </param>
-        public CheckingAccount(int agencia, int numero)
+        /// <param name="numero"> Representa o valor da propriedade <see cref="Numero"/> e deve possuir um valor maior que zero. </param>
+        public ContaCorrente(int agencia, int numero)
         {
             if (numero <= 0)
             {
@@ -59,7 +59,7 @@ namespace ByteBank.Modelos
             }
 
             Agencia = agencia;
-            Number = numero;
+            Numero = numero;
 
             TotalDeContasCriadas++;
             TaxaOperacao = 30 / TotalDeContasCriadas;
@@ -92,7 +92,7 @@ namespace ByteBank.Modelos
             _saldo += valor;
         }
 
-        public void Transferir(double valor, CheckingAccount contaDestino)
+        public void Transferir(double valor, ContaCorrente contaDestino)
         {
             if (valor < 0)
             {
@@ -114,31 +114,31 @@ namespace ByteBank.Modelos
 
         public override bool Equals(object obj)
         {
-            CheckingAccount outraConta = obj as CheckingAccount;
+            ContaCorrente outraConta = obj as ContaCorrente;
 
             if(outraConta == null)
             {
                 return false;
             }
 
-            return Number == outraConta.Number && Agencia == outraConta.Agencia;
+            return Numero == outraConta.Numero && Agencia == outraConta.Agencia;
         }
 
         public int CompareTo(object obj)
         {
-            var outraConta = obj as CheckingAccount;
+            var outraConta = obj as ContaCorrente;
 
-            if(outraConta is null)
+            if(outraConta == null)
             {
                 return -1;
             }
 
-            if (Number < outraConta.Number)
+            if (Numero < outraConta.Numero)
             {
                 return -1;
             }
 
-            if(Number == outraConta.Number)
+            if(Numero == outraConta.Numero)
             {
                 return 0;
             }

@@ -15,6 +15,11 @@ namespace ByteBank.SistemaAgencia
 
         static void Main(string[] args)
         {
+            IComparableTest();
+        }
+
+        private static void TestExtensionMethod()
+        {
             var ages = new List<int>
             {
                 1,
@@ -26,6 +31,7 @@ namespace ByteBank.SistemaAgencia
             };
 
             ages.AddSeveral(2, 3, 5);
+            ages.Sort();
 
             foreach (var age in ages)
             {
@@ -35,24 +41,60 @@ namespace ByteBank.SistemaAgencia
             Console.ReadLine();
         }
 
+        private static void TestSort()
+        {
+            var names = new List<string>
+            {
+                "gustavo",
+                "nathan",
+                "rafael",
+                "marcela"
+            };
+
+            names.Sort();
+
+            foreach (var name in names)
+            {
+                Console.WriteLine(name);
+            }
+
+            var ages = new List<int>
+            {
+                1,
+                10,
+                25,
+                21,
+                4,
+                499
+            };
+
+            ages.AddSeveral(2, 3, 5);
+            ages.Sort();
+
+            foreach (var age in ages)
+            {
+                Console.WriteLine(age);
+            }
+        }
+
         private static void TestCheckingAccountListNull()
         {
-            var accounts = new List<CheckingAccount>()
+            var accounts = new List<ContaCorrente>()
             {
-                new CheckingAccount(341, 355943),
-                new CheckingAccount(341, 302932),
+                new ContaCorrente(341, 355943),
+                new ContaCorrente(341, 302932),
                 null,
-                new CheckingAccount(351, 302933),
-                new CheckingAccount(351, 12),
+                new ContaCorrente(351, 302933),
+                new ContaCorrente(351, 12),
                 null,
                 null
             };
 
-            var sortedAccountsNotNull = accounts.Where(account => account != null).OrderBy(account => account.Number);
+            var sortedAccountsNotNull = accounts.Where(account => account != null).OrderBy(account => account.Numero);
 
             foreach (var account in sortedAccountsNotNull)
             {
-                Console.WriteLine($"conta: {account.Number}, agencia: {account.Agencia}");
+                Console.WriteLine($"conta: {account.Numero}, agencia: {account.Agencia}");
             }
 
             Console.ReadLine();
@@ -60,12 +102,12 @@ namespace ByteBank.SistemaAgencia
 
         static void IComparableTest()
         {
-            var accounts = new List<CheckingAccount>()
+            var accounts = new List<ContaCorrente>()
             {
-                new CheckingAccount(341, 355943),
-                new CheckingAccount(341, 302932),
-                new CheckingAccount(351, 302933),
-                new CheckingAccount(351, 1)
+                new ContaCorrente(341, 355943),
+                new ContaCorrente(341, 302932),
+                new ContaCorrente(351, 302933),
+                new ContaCorrente(351, 1)
             };
 
             //ordenação com IComparable
@@ -74,7 +116,12 @@ namespace ByteBank.SistemaAgencia
             //ordenação com Imcomparer
             accounts.Sort(new CurrentAccountComparatorByAgency());
 
-            
+            foreach (var account in accounts)
+            {
+                Console.WriteLine($"Agência {account.Agencia} | conta {account.Numero}");
+            }
+
+            Console.ReadLine();
         }
     
 
@@ -137,35 +184,35 @@ namespace ByteBank.SistemaAgencia
         static void TestaListaDeContaCorrente()
         {
             //ListaDeContaCorrente lista = new ListaDeContaCorrente();
-            CheckingAccountList list = new CheckingAccountList();
+            ListContaCorrente list = new ListContaCorrente();
 
-            CheckingAccount contaDoGui = new CheckingAccount(11111, 1111111);
+            ContaCorrente contaDoGui = new ContaCorrente(11111, 1111111);
 
-            CheckingAccount[] contas = new CheckingAccount[]
+            ContaCorrente[] contas = new ContaCorrente[]
             {
                 contaDoGui,
-                new CheckingAccount(874, 5679787),
-                new CheckingAccount(874, 5679754)
+                new ContaCorrente(874, 5679787),
+                new ContaCorrente(874, 5679754)
             };
 
             list.AddSeveral(contas);
 
             list.AddSeveral(
                 contaDoGui,
-                new CheckingAccount(874, 5679787),
-                new CheckingAccount(874, 5679787),
-                new CheckingAccount(874, 5679787),
-                new CheckingAccount(874, 5679787),
-                new CheckingAccount(874, 5679787),
-                new CheckingAccount(874, 5679787),
-                new CheckingAccount(874, 5679787),
-                new CheckingAccount(874, 5679787)
+                new ContaCorrente(874, 5679787),
+                new ContaCorrente(874, 5679787),
+                new ContaCorrente(874, 5679787),
+                new ContaCorrente(874, 5679787),
+                new ContaCorrente(874, 5679787),
+                new ContaCorrente(874, 5679787),
+                new ContaCorrente(874, 5679787),
+                new ContaCorrente(874, 5679787)
             );
 
             for (int i = 0; i < list.Size; i++)
             {
-                CheckingAccount itemAtual = list[i];
-                Console.WriteLine($"Item na posição {i} = Conta {itemAtual.Number}/{itemAtual.Agencia}");
+                ContaCorrente itemAtual = list[i];
+                Console.WriteLine($"Item na posição {i} = Conta {itemAtual.Numero}/{itemAtual.Agencia}");
             }
         }
 
@@ -173,17 +220,17 @@ namespace ByteBank.SistemaAgencia
 
         static void TestaArrayDeContaCorrente()
         {
-            CheckingAccount[] contas = new CheckingAccount[]
+            ContaCorrente[] contas = new ContaCorrente[]
                 {
-                    new CheckingAccount(874, 5679787),
-                    new CheckingAccount(874, 4456668),
-                    new CheckingAccount(874, 7781438)
+                    new ContaCorrente(874, 5679787),
+                    new ContaCorrente(874, 4456668),
+                    new ContaCorrente(874, 7781438)
                 };
 
             for (int indice = 0; indice < contas.Length; indice++)
             {
-                CheckingAccount contaAtual = contas[indice];
-                Console.WriteLine($"Conta {indice} {contaAtual.Number}");
+                ContaCorrente contaAtual = contas[indice];
+                Console.WriteLine($"Conta {indice} {contaAtual.Numero}");
             }
         }
 

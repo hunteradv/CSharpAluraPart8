@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace ByteBank.SistemaAgencia.Comparators
 {
-    public class CurrentAccountComparatorByAgency : IComparer<CheckingAccount>
+    public class CurrentAccountComparatorByAgency : IComparer<ContaCorrente>
     {
-        public int Compare(CheckingAccount x, CheckingAccount y)
+        public int Compare(ContaCorrente x, ContaCorrente y)
         {
             if(x is null)
             {

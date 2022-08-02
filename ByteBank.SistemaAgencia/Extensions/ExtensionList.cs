@@ -14,6 +14,6 @@ namespace ByteBank.SistemaAgencia.Extensions
             {
                 IntList.Add(item);
             }
-        }
+        }        
     }
 }   

@@ -47,7 +47,7 @@
     <Compile Include="Comparators\CurrentAccountComparatorByAgency.cs" />
     <Compile Include="Estagiario.cs" />
     <Compile Include="Extensions\ExtensionList.cs" />
-    <Compile Include="CheckingAccountList.cs" />
+    <Compile Include="ListContaCorrente.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

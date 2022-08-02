@@ -12,9 +12,9 @@ namespace ByteBank.SistemaAgencia
     //                                 `- _proximaPosicao
 
 
-    public class CheckingAccountList
+    public class ListContaCorrente
     {
-        private CheckingAccount[] _items;
+        private ContaCorrente[] _items;
         private int _nextposition;
         
         public int Size
@@ -25,9 +25,9 @@ namespace ByteBank.SistemaAgencia
             }
         }
 
-        public CheckingAccountList(int startingCapacity = 5)
+        public ListContaCorrente(int startingCapacity = 5)
         {
-            _items = new CheckingAccount[startingCapacity];
+            _items = new ContaCorrente[startingCapacity];
             _nextposition = 0;
         }
 
@@ -36,7 +36,7 @@ namespace ByteBank.SistemaAgencia
 
         }
 
-        public void Insert(CheckingAccount item)
+        public void Insert(ContaCorrente item)
         {
             VerificarCapacidade(_nextposition + 1);
 
@@ -46,21 +46,21 @@ namespace ByteBank.SistemaAgencia
             _nextposition++;
         }
         
-        public void AddSeveral(params CheckingAccount[] items)
+        public void AddSeveral(params ContaCorrente[] items)
         {
-            foreach(CheckingAccount account in items)
+            foreach(ContaCorrente account in items)
             {
                 Insert(account);
             }
         }
 
-        public void Delete(CheckingAccount item)
+        public void Delete(ContaCorrente item)
         {
             int indiceItem = -1;
 
             for(int i = 0; i < _nextposition; i++)
             {
-                CheckingAccount itemAtual = _items[i];
+                ContaCorrente itemAtual = _items[i];
 
                 if (itemAtual.Equals(item))
                 {
@@ -84,7 +84,7 @@ namespace ByteBank.SistemaAgencia
             _items[_nextposition] = null;
         }
 
-        public CheckingAccount GetItemNoIndice(int indice)
+        public ContaCorrente GetItemNoIndice(int indice)
         {
             if(indice < 0 || indice >= _nextposition)
             {
@@ -109,7 +109,7 @@ namespace ByteBank.SistemaAgencia
 
             // Console.WriteLine("Aumentando capacidade da lista!");
 
-            CheckingAccount[] novoArray = new CheckingAccount[novoTamanho];
+            ContaCorrente[] novoArray = new ContaCorrente[novoTamanho];
 
             for(int indice = 0; indice < _items.Length; indice++)
             {
@@ -120,7 +120,7 @@ namespace ByteBank.SistemaAgencia
             _items = novoArray;
         }
         
-        public CheckingAccount this[int indice]
+        public ContaCorrente this[int indice]
         {
             get
             {
