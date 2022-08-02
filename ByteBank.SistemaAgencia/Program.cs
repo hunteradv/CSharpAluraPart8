@@ -110,11 +110,11 @@ namespace ByteBank.SistemaAgencia
                 new ContaCorrente(351, 1)
             };
 
-            //ordenação com IComparable
-            //accounts.Sort();
+            //ordenação com IComparable (conta)
+            accounts.Sort();
 
-            //ordenação com Imcomparer
-            accounts.Sort(new CurrentAccountComparatorByAgency());
+            //ordenação com Imcomparer 
+            //accounts.Sort(new ComparadorContaCorrentePorAgencia());
 
             foreach (var account in accounts)
             {

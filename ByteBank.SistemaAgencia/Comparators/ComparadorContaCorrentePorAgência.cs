@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace ByteBank.SistemaAgencia.Comparators
 {
-    public class CurrentAccountComparatorByAgency : IComparer<ContaCorrente>
+    public class ComparadorContaCorrentePorAgencia : IComparer<ContaCorrente>
     {
         public int Compare(ContaCorrente x, ContaCorrente y)
         {
-            if(x is null)
+            if(x == null)
             {
                 return 1;
             }
 
-            if(y is null)
+            if(y == null)
             {
                 return -1;
             }
