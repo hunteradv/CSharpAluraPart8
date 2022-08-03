@@ -15,7 +15,27 @@ namespace ByteBank.SistemaAgencia
 
         static void Main(string[] args)
         {
-            IComparableTest();
+            TestCheckingAccountListNull();
+        }
+
+        private static void OrderByTest()
+        {
+            var accounts = new List<ContaCorrente>()
+            {
+                new ContaCorrente(341, 355943),
+                new ContaCorrente(341, 302932),
+                new ContaCorrente(351, 302933),
+                new ContaCorrente(351, 1)
+            };
+
+            var ordenedList = accounts.OrderBy(x => x.Saldo);
+
+            foreach (var account in ordenedList)
+            {
+                Console.WriteLine($"Agência {account.Agencia} | conta {account.Numero} | Saldo {account.Saldo}");
+            }
+
+            Console.ReadLine();
         }
 
         private static void TestExtensionMethod()
@@ -90,12 +110,31 @@ namespace ByteBank.SistemaAgencia
                 null
             };
 
-            var sortedAccountsNotNull = accounts.Where(account => account != null).OrderBy(account => account.Numero);
+            var sortedAccountsNotNull = accounts.Where(account => account != null).OrderBy(account => account.Numero);            
 
             foreach (var account in sortedAccountsNotNull)
-            {
+            {                                   
                 Console.WriteLine($"conta: {account.Numero}, agencia: {account.Agencia}");
             }
+
+
+            //segunda forma
+            //IOrderedEnumerable<ContaCorrente> ordenedAccounts = 
+            //    accounts.OrderBy(account => { 
+            //        if (account == null)
+            //        {
+            //            return int.MinValue;
+            //        }
+            //        return account.Numero; 
+            //    });
+
+            //foreach (var account in sortedAccountsNotNull)
+            //{
+                //if (account != null)
+                //{                    
+                //Console.WriteLine($"conta: {account.Numero}, agencia: {account.Agencia}");
+                //}
+            //}
 
             Console.ReadLine();
         }
@@ -124,7 +163,6 @@ namespace ByteBank.SistemaAgencia
             Console.ReadLine();
         }
     
-
         static void SortTest()
         {
             var ages = new List<int>()
@@ -180,7 +218,6 @@ namespace ByteBank.SistemaAgencia
             return acumulador;
         }
 
-
         static void TestaListaDeContaCorrente()
         {
             //ListaDeContaCorrente lista = new ListaDeContaCorrente();
@@ -195,9 +232,9 @@ namespace ByteBank.SistemaAgencia
                 new ContaCorrente(874, 5679754)
             };
 
-            list.AddSeveral(contas);
+            list.AdicionarVarios(contas);
 
-            list.AddSeveral(
+            list.AdicionarVarios(
                 contaDoGui,
                 new ContaCorrente(874, 5679787),
                 new ContaCorrente(874, 5679787),
@@ -215,8 +252,6 @@ namespace ByteBank.SistemaAgencia
                 Console.WriteLine($"Item na posição {i} = Conta {itemAtual.Numero}/{itemAtual.Agencia}");
             }
         }
-
-
 
         static void TestaArrayDeContaCorrente()
         {
@@ -263,6 +298,5 @@ namespace ByteBank.SistemaAgencia
             int media = acumulador / idades.Length;
             Console.WriteLine($"Média de idades = {media}");
         }
-
     }
 }

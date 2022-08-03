@@ -46,7 +46,7 @@ namespace ByteBank.SistemaAgencia
             _nextposition++;
         }
         
-        public void AddSeveral(params ContaCorrente[] items)
+        public void AdicionarVarios(params ContaCorrente[] items)
         {
             foreach(ContaCorrente account in items)
             {
