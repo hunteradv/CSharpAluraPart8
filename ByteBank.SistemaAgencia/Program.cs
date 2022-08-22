@@ -15,7 +15,13 @@ namespace ByteBank.SistemaAgencia
 
         static void Main(string[] args)
         {
-            TestCheckingAccountListNull();
+            var cpfFormatado = "12345678910".FormataCpf(0);
+            var cpfFormatado2 = "12345678910".FormataCpf(6);
+
+            Console.WriteLine(cpfFormatado);
+            Console.WriteLine(cpfFormatado2);
+
+            Console.ReadLine();
         }
 
         private static void OrderByTest()

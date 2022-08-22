@@ -14,6 +14,18 @@ namespace ByteBank.SistemaAgencia.Extensions
             {
                 IntList.Add(item);
             }
-        }        
+        }
+        
+        public static string FormataCpf(this string value, int tamanho)
+        {
+            var cpf = value.Substring(0, 3) + "." + value.Substring(3, 3) + "." + value.Substring(6, 3) + "-" + value.Substring(9, 2);
+
+            if (tamanho != 0)
+            {
+                cpf = cpf.Substring(0, tamanho - 1);
+            }
+
+            return cpf;
+        }
     }
 }   
